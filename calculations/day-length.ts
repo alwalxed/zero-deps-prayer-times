@@ -1,4 +1,4 @@
-import { round } from "../dumb";
+import { round } from "../utils/formatting";
 
 export function getDayLength(hourAngle: number, EoT: number) {
   try {

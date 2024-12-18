@@ -1,4 +1,5 @@
-import { degreesToRadians, radiansToDegrees, round } from "../dumb";
+import { degreesToRadians, radiansToDegrees } from "../utils/conversions";
+import { round } from "../utils/formatting";
 
 export function getHourAngle(
   lat: number,
@@ -14,9 +15,7 @@ export function getHourAngle(
     (Math.cos(latRad) * Math.cos(decRad));
 
   if (cosH < -1 || cosH > 1) {
-    throw new Error(
-      "No sunrise or sunset on this day for the given lat and declination."
-    );
+    return 0;
   }
   const hourAngleRad = Math.acos(cosH);
   const hourAngleDeg = radiansToDegrees(hourAngleRad);

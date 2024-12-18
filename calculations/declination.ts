@@ -1,4 +1,4 @@
-import { round } from "../dumb";
+import { round } from "../utils/formatting";
 
 export function getDeclination(dayOfYear: number) {
   const tilt = 23.44;

@@ -1,4 +1,4 @@
-import { isDateInRamadan } from "../functions/dumb";
+import { isDateInRamadan } from "../utils/date";
 
 const ramadanAdjustmentMinutes = 120;
 const normalAdjustmentMinutes = 90;
