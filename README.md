@@ -1,15 +1,58 @@
-# a4an
+# Zero Dependencies Prayer Times
 
-To install dependencies:
+Embedable Islamic prayer times calculator for date and coordinates.
 
-```bash
-bun install
+## Installation (NPM)
+
+```
+npm install zero-deps-prayer-times
 ```
 
-To run:
+## Usage
 
-```bash
-bun run index.ts
+```js
+import { calculatePrayerTimes } from "zero-deps-prayer-times";
+
+const date = new Date();
+const coordinates = { latitude: 21.42251, longitude: 39.826168 };
+
+// similar to supabase, returns data and error
+const { data, error } = calculatePrayerTimes(date, coordinates);
+
+if (error) {
+  console.error("Error:", error.message);
+  return;
+}
+
+console.log("Prayer Times Data:", data);
 ```
 
-This project was created using `bun init` in bun v1.1.36. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Returned Data
+
+`data` is an object containing prayer times and extras. Example output:
+
+```js
+ {
+   "prayers": {
+     "fajr": "05:30 AM",
+     "dhuhr": "1:02 PM",
+     "asr": "3:30 PM",
+     "maghrib": "6:45 PM",
+     "isha": "8:00 PM"
+   },
+   "extras": {
+     "sunrise": "06:00 AM",
+     "dayOfYear": 345,
+     "dayLength": "12:30"
+   }
+ }
+
+```
+
+## Contributing
+
+If you encounter any issues or have suggestions, please submit them via issues or pull requests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/alwalxed/zero-deps-prayer-times/blob/main/LICENSE) file for details.
