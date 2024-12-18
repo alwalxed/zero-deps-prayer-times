@@ -1,15 +1,33 @@
 {
   "name": "zero-deps-prayer-times",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Embedable Islamic prayer times calculator for date and coordinates.",
-  "module": "index.ts",
-  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup index.ts --format cjs,esm --dts",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc"
+  },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/jest": "^29.5.14"
+    "@types/jest": "^29.5.14",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "author": "Awa alwalxed@proton.me",
+  "license": "MIT",
+  "homepage": "https://github.com/alwalxed/zero-deps-prayer-times",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alwalxed/zero-deps-prayer-times.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alwalxed/zero-deps-prayer-times/issues"
   },
   "keywords": [
     "prayer-times",
@@ -24,15 +42,5 @@
     "adan",
     "a4an",
     "adahan"
-  ],
-  "author": "Awa alwalxed@proton.me",
-  "license": "MIT",
-  "homepage": "https://github.com/alwalxed/zero-deps-prayer-times",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alwalxed/zero-deps-prayer-times.git"
-  },
-  "bugs": {
-    "url": "https://github.com/alwalxed/zero-deps-prayer-times/issues"
-  }
+  ]
 }
