@@ -32,21 +32,20 @@ console.log("Prayer Times Data:", data);
 `data` is an object containing prayer times and extras. Example output:
 
 ```js
- {
-   "prayers": {
-     "fajr": "05:30 AM",
-     "dhuhr": "1:02 PM",
-     "asr": "3:30 PM",
-     "maghrib": "6:45 PM",
-     "isha": "8:00 PM"
-   },
-   "extras": {
-     "sunrise": "06:00 AM",
-     "dayOfYear": 345,
-     "dayLength": "12:30"
-   }
- }
-
+{
+  "prayers": {
+    "fajr": "05:30 AM",
+    "dhuhr": "1:02 PM",
+    "asr": "3:30 PM",
+    "maghrib": "6:45 PM",
+    "isha": "8:00 PM"
+  },
+  "extras": {
+    "sunrise": "06:00 AM",
+    "dayOfYear": 345,
+    "dayLength": "12:30"
+  }
+}
 ```
 
 ## Contributing
