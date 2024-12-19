@@ -6,15 +6,18 @@ import { getAsrTime } from "./prayers/asr";
 import { getDayBoundaryTime } from "./prayers/boundaries";
 import { getFajrTime } from "./prayers/fajr";
 import { getIshaTime } from "./prayers/isha";
+import { getMidnight } from "./prayers/midnight";
 import { getNoonTime } from "./prayers/noon";
-import type { Coordinates, PrayerTimesResult } from "./types";
+import type { Coordinates, Options, PrayerTimesResult } from "./types";
 import { getDayOfYear } from "./utils/date";
-import { formatTimeHHMM, minutesToTime } from "./utils/formatting";
+import { formatTime, minutesToTime } from "./utils/formatting";
+import { findNextPrayer } from "./utils/helpers";
 import { isValidCoordinates } from "./utils/validate";
 
 export function calculatePrayerTimes(
   date: Date,
-  coordinates: Coordinates
+  coordinates: Coordinates,
+  options: Options
 ): PrayerTimesResult {
   try {
     if (isNaN(date.getTime())) {
@@ -52,25 +55,46 @@ export function calculatePrayerTimes(
       date,
       EoT
     );
-    const fajrTime = getFajrTime(noonTime, latitude, declination);
+    const fajrTime = getFajrTime(
+      noonTime,
+      latitude,
+      declination,
+      options.convention
+    );
     const ishaTime = getIshaTime(maghribTime);
-    const asrTime = getAsrTime(noonTime, latitude, declination);
+    const asrTime = getAsrTime(
+      noonTime,
+      latitude,
+      declination,
+      options.hanafiAsr
+    );
+    const midnightTime = getMidnight(maghribTime, fajrTime);
 
     const dayLength = minutesToTime(getDayLength(hourAngle, EoT));
+
+    const nextPrayer = findNextPrayer(date, [
+      { name: "fajr", time: fajrTime },
+      { name: "dhuhr", time: noonTime },
+      { name: "asr", time: asrTime },
+      { name: "maghrib", time: maghribTime },
+      { name: "isha", time: ishaTime },
+    ]);
 
     return {
       data: {
         prayers: {
-          fajr: formatTimeHHMM(fajrTime),
-          dhuhr: formatTimeHHMM(noonTime),
-          asr: formatTimeHHMM(asrTime),
-          maghrib: formatTimeHHMM(maghribTime),
-          isha: formatTimeHHMM(ishaTime),
+          fajr: formatTime(fajrTime),
+          dhuhr: formatTime(noonTime),
+          asr: formatTime(asrTime),
+          maghrib: formatTime(maghribTime),
+          isha: formatTime(ishaTime),
         },
         extras: {
-          sunrise: formatTimeHHMM(sunriseTime),
+          midnight: formatTime(midnightTime),
+          sunrise: formatTime(sunriseTime),
           dayOfYear: dayOfYear,
           dayLength: dayLength,
+          nextPrayer,
         },
       },
       error: null,

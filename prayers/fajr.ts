@@ -1,6 +1,18 @@
-export function getFajrTime(noonTime: Date, lat: number, declination: number) {
+import { conventions } from "../constants";
+import type { Convention, PrayerTimeConvention } from "../types";
+
+export function getFajrTime(
+  noonTime: Date,
+  lat: number,
+  declination: number,
+  convention: Convention = "Umm al-Qura University, Makkah"
+) {
   try {
-    const fajrSolarAngle = -18.5;
+    const selectedConvention = conventions.find(
+      (item) => item.convention === convention
+    ) as PrayerTimeConvention;
+
+    const fajrSolarAngle = selectedConvention?.angle.fajr ?? 18.5;
 
     const fajrHourAngle = Math.acos(
       (Math.cos((90 + Math.abs(fajrSolarAngle)) * (Math.PI / 180)) -

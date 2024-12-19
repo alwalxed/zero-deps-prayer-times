@@ -8,10 +8,26 @@ export function round(number: number) {
   return Math.round(number * 100) / 100;
 }
 
-export function formatTimeHHMM(date: Date): string {
+function formatTimeHHMM12Hour(date: Date): string {
   return date.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
   });
+}
+
+function formatTimeHHMM24Hour(date: Date): string {
+  return date.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+}
+
+export function formatTime(date: Date) {
+  return {
+    date: date,
+    formatted12H: formatTimeHHMM12Hour(date),
+    formatted24H: formatTimeHHMM24Hour(date),
+  };
 }
