@@ -1,6 +1,6 @@
 {
   "name": "zero-deps-prayer-times",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A lightweight, embeddable Islamic prayer times calculator based on date and coordinates, with zero external dependencies.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
