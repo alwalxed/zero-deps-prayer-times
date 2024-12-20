@@ -14,10 +14,10 @@ import { formatTime, minutesToTime } from "./utils/formatting";
 import { findNextPrayer } from "./utils/helpers";
 import { isValidCoordinates } from "./utils/validate";
 
-export function calculatePrayerTimes(
+export function getPrayerTimes(
   date: Date,
   coordinates: Coordinates,
-  options: Options
+  options: Options | undefined
 ): PrayerTimesResult {
   try {
     if (isNaN(date.getTime())) {
@@ -59,14 +59,14 @@ export function calculatePrayerTimes(
       noonTime,
       latitude,
       declination,
-      options.convention
+      options?.convention
     );
     const ishaTime = getIshaTime(maghribTime);
     const asrTime = getAsrTime(
       noonTime,
       latitude,
       declination,
-      options.hanafiAsr
+      options?.hanafiAsr
     );
     const midnightTime = getMidnight(maghribTime, fajrTime);
 

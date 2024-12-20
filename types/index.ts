@@ -10,13 +10,13 @@ export type Options = {
   hanafiAsr?: boolean;
 };
 
-export type FormattedTime = {
+type FormattedTime = {
   date: Date;
   formatted12H: string;
   formatted24H: string;
 };
 
-export type PrayerTimes = {
+type PrayerTimes = {
   fajr: FormattedTime;
   dhuhr: FormattedTime;
   asr: FormattedTime;
@@ -24,7 +24,7 @@ export type PrayerTimes = {
   isha: FormattedTime;
 };
 
-export type ExtraInfo = {
+type ExtraInfo = {
   sunrise: FormattedTime;
   midnight: FormattedTime;
   dayOfYear: number | string;

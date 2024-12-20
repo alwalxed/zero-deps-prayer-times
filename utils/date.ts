@@ -25,7 +25,7 @@ type HijriDate = {
 
 const ISLAMIC_EPOCH = 1948439.5;
 
-export function toHijri(input: DateInput): HijriDate {
+function toHijri(input: DateInput): HijriDate {
   let gYear: number, gMonth: number, gDay: number;
 
   if (input instanceof Date) {
