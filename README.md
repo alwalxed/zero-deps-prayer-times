@@ -1,4 +1,4 @@
-# Zero Dependencies Prayer Times
+# Zero Deps Prayer Times
 
 A lightweight, embeddable Islamic prayer times calculator based on date and coordinates, with zero external dependencies.
 
